@@ -1,5 +1,5 @@
 public interface Operando {
-    public String stampa();
+    public void stampa();
     public double calcolo();
     public String toString();
 }

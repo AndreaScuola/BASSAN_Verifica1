@@ -32,17 +32,17 @@ public class Main {
             System.out.println("Collaudo delle eccezzioni: inserire denominatore nullo");
             creaFrazioneInput();
         } catch (DenominatoreNulloException e){
-            System.out.println("Errore: " + e);
+            System.err.println("Errore: " + e);
         }
     }
 
     public static Frazione creaFrazioneInput(){
         Scanner sc =  new Scanner(System.in);
 
-        System.out.println("Inserisci il numeratore della frazione: ");
+        System.out.print("Inserisci il numeratore della frazione: ");
         int numeratore = sc.nextInt();
 
-        System.out.println("Inserisci il denominatore della frazione: ");
+        System.out.print("Inserisci il denominatore della frazione: ");
         int denominatore = sc.nextInt();
 
         return new Frazione(numeratore, denominatore);
