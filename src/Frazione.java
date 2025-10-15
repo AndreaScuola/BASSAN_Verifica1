@@ -4,12 +4,12 @@ public class Frazione implements Operando{
     private int numeratore;
     private int denominatore;
 
-    public Frazione(){
+    public Frazione(){  //Costruttore di default
         numeratore = 1;
         denominatore = 1;
     }
 
-    public Frazione(int numeratore, int denominatore){
+    public Frazione(int numeratore, int denominatore){  //Costruttore parametrizzato
         if(denominatore == 0)
             throw new DenominatoreNulloException("Denominatore non valido");
 
@@ -17,11 +17,11 @@ public class Frazione implements Operando{
         this.denominatore = denominatore;
     }
 
-    public void stampa(){
+    public void stampa(){   //Stampa --> Stampa la frazione
         System.out.println(numeratore + "/" + denominatore);
     }
 
-    public String toString(String message){
+    public String toString(String message){ //Ritorna la stringa e gestisce il segno
         char segnoFr;
         if(numeratore * denominatore > 0) segnoFr = '+';
         else segnoFr = '-';
@@ -37,7 +37,7 @@ public class Frazione implements Operando{
         ArrayList<Integer> fattori = new ArrayList<>();
         int i = 2;
 
-        do{
+        do{ //Cerca divisori del numero fino alla metà del numero stesso
             if(numero % i == 0){
                 fattori.add(i);
                 numero = numero / i;
@@ -46,7 +46,7 @@ public class Frazione implements Operando{
                 i++;
         } while(i <= numero/2);
 
-        if(numero != 1)
+        if(numero != 1) //Se numero primo
             fattori.add(numero);
 
         return fattori;
@@ -68,32 +68,38 @@ public class Frazione implements Operando{
         return new Frazione(numF3, denomF3);
     }
 
-    public Frazione inversione(){
-        return new Frazione(denominatore, numeratore);
-    }
-
-    public Frazione divisione(Frazione f2){
+    public Frazione divisione(Frazione f2){ //Numeratore per denominatore --> Come invertire e moltiplicare
         return new Frazione(numeratore*f2.denominatore, denominatore*f2.numeratore);
     }
 
+    public Frazione inversione(){
+        if(numeratore == 0)
+            throw new DenominatoreNulloException("Inversione non valida: numeratore è '0'");
+
+        return new Frazione(denominatore, numeratore);
+    }
+
     public Frazione semplificazione(){
+        //Gestione segno
         char segnoFr;
         if(numeratore * denominatore > 0) segnoFr = '+';
         else segnoFr = '-';
 
+        //Fattorizzo
         ArrayList<Integer> fattNum = fattorizzazione(Math.abs(numeratore));
         ArrayList<Integer> fattDenom = fattorizzazione(Math.abs(denominatore));
         ArrayList<Integer> fattComuni = new ArrayList<Integer>();
 
-        for (int numero : fattNum)
+        for (int numero : fattNum)  //Trova i fattori comuni
             if (fattDenom.contains(numero))
                 fattComuni.add(numero);
 
-        for (int numero : fattComuni){
+        for (int numero : fattComuni){  //Rimuove i fattori comuni
             fattNum.remove(fattNum.indexOf(numero));
             fattDenom.remove(fattDenom.indexOf(numero));
         }
 
+        //Calcola numeratore e denominatore semplificati
         int numSemplificato = 1;
         for(int numero : fattNum)
             numSemplificato *= numero;

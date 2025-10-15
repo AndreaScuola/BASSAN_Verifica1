@@ -7,32 +7,34 @@ public class Main {
         Frazione f2 = creaFrazioneInput();
         System.out.println(f2.toString("Seconda frazione: "));
 
+        System.out.println("\n-------------------------\n");
         System.out.println("Valore reale della prima frazione: " + f1.calcolo());
         System.out.println("Valore reale della seconda frazione: " + f2.calcolo());
 
         Frazione f3 = f1.moltiplicazione(f2);
-        System.out.println(f3.toString("Terza frazione (f1*f2): "));
+        System.out.println(f3.toString("\nTerza frazione (f1*f2): "));
 
         Frazione f4 =  f3.semplificazione();
-        System.out.println(f4.toString("Quarta frazione (f3 semplificata): "));
+        System.out.println(f4.toString("\nQuarta frazione (f3 semplificata): "));
 
         Frazione f5 =  f1.somma(f2);
-        System.out.println(f5.toString("Quinta frazione (f1+f2): "));
+        System.out.println(f5.toString("\nQuinta frazione (f1+f2): "));
 
         Frazione f6 =  f1.differenza(f2);
-        System.out.println(f6.toString("Sesta frazione (f1-f2): "));
+        System.out.println(f6.toString("\nSesta frazione (f1-f2): "));
 
         Frazione f7 =  f1.inversione();
-        System.out.println(f7.toString("Settima frazione (inversione di f1): "));
+        System.out.println(f7.toString("\nSettima frazione (inversione di f1): "));
 
         Frazione f8 =  f1.divisione(f2);
-        System.out.println(f8.toString("Ottava frazione (f1/f2): "));
+        System.out.println(f8.toString("\nOttava frazione (f1/f2): "));
 
+        System.out.println("\n-------------------------\n");
         try{
-            System.out.println("Collaudo delle eccezzioni: inserire denominatore nullo");
+            System.out.println("Collaudo dell'eccezione: inserire denominatore nullo");
             creaFrazioneInput();
         } catch (DenominatoreNulloException e){
-            System.err.println("Errore: " + e);
+            System.err.println("ERRORE: " + e);
         }
     }
 
